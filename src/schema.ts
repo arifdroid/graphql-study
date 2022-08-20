@@ -3,11 +3,14 @@ import { gql } from 'apollo-server'
 export const typeDefs = gql`
     type Query{
         greeting: String
+        posts: [Post!]!
 
     }
 
     type Mutation{
-        postCreate(title: String!, content: String!): PostPayload!
+        #repititive
+        postCreate(post: PostInput!): PostPayload!
+        postUpdate(post: PostInput!): PostPayload
     }
     
 
@@ -47,6 +50,10 @@ export const typeDefs = gql`
         post: Post
     }
 
+    input PostInput{
+        title: String,
+        content: String
+    }
 
 
 `

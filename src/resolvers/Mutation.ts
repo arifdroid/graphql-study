@@ -1,4 +1,4 @@
-import { Post } from '@prisma/client'
+import { Post, Prisma } from '@prisma/client'
 import { Context } from '../index'
 
 interface PostCreateArgs {
@@ -10,7 +10,7 @@ interface PostPayloadType {
     userErrors: {
         message: string
     }[],
-    post: Post | null
+    post: Post | Prisma.Prisma__PostClient<Post> | null
 }
 
 export const Mutation = {
@@ -27,17 +27,23 @@ export const Mutation = {
         }
 
 
-        const post = await prisma.post.create({
-            data: {
-                authorId: 1,
-                title,
-                content
-            }
-        })
+        // const post = await prisma.post.create({
+        //     data: {
+        //         authorId: 1,
+        //         title,
+        //         content
+        //     }
+        // })
 
         return {
             userErrors: [],
-            post
+            post: prisma.post.create({
+                data: {
+                    authorId: 1,
+                    title,
+                    content
+                }
+            })
         }
     }
 }
