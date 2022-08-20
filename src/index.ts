@@ -1,22 +1,25 @@
 import { ApolloServer, gql } from 'apollo-server';
-// import { typeDefs } from './schema'
+import { typeDefs } from './schema'
+import { PrismaClient, Prisma } from '@prisma/client'
+import { Query, Mutation } from './resolvers';
 
-const typeDefs = gql`
-  type Query {
-    greeting: String
-  }
-`;
+const prisma = new PrismaClient();
 
-const resolvers = {
-  Query: {
-    greeting: () => 'Hello GraphQL world!👋',
-  },
-};
+export interface Context {
+    prisma: PrismaClient<Prisma.PrismaClientOptions, never, Prisma.RejectOnNotFound | Prisma.RejectPerOperation | undefined>
+}
 
 
 const server = new ApolloServer({
     typeDefs,
-    resolvers
+    resolvers: {
+        Query,
+        Mutation
+    },
+    context: {
+        prisma
+    }
+
 
 })
 
