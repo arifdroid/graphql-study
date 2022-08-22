@@ -10,7 +10,7 @@ export const typeDefs = gql`
     type Mutation{
         #repititive
         postCreate(post: PostInput!): PostPayload!
-        postUpdate(post: PostInput!): PostPayload
+        postUpdate(postId: ID!, post: PostInput!): PostPayload
     }
     
 
