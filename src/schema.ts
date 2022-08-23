@@ -12,7 +12,7 @@ export const typeDefs = gql`
         postCreate(post: PostInput!): PostPayload!
         postUpdate(postId: ID!, post: PostInput!): PostPayload
 
-        signUp(email: String!, name: String!, password: String!): User
+        signUp(email: String!, name: String!, password: String!): AuthPayload
     }
     
 
@@ -50,6 +50,11 @@ export const typeDefs = gql`
     type PostPayload{
         userErrors: [UserError!]!
         post: Post
+    }
+
+    type AuthPayload{
+        userErrors: [UserError!]!
+        user: User
     }
 
     input PostInput{
