@@ -1,2 +1,2 @@
-export * from './Mutation'
+export * from './Mutation/Mutation'
 export * from './Query'

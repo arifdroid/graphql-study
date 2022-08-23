@@ -1,5 +1,5 @@
 import { Post, Prisma } from '@prisma/client'
-import { Context } from '../index'
+import { Context } from '../../index'
 
 interface PostArgs {
     post: {
@@ -15,7 +15,9 @@ interface PostPayloadType {
     post: Post | Prisma.Prisma__PostClient<Post> | null
 }
 
-export const Mutation = {
+
+export const postResolvers = {
+
     postCreate: async (parent: any,
         { title, content }: PostArgs["post"],
         { prisma }: Context)
@@ -88,19 +90,6 @@ export const Mutation = {
                 where: { id: Number(postId) }
             })
         }
-
-
-        // const postasd = await prisma.post.create({
-        //     data: {
-        //         authorId: 1,
-        //         title,
-        //         content
-        //     }
-        // })
-
-        // return null
-        // return {
-        //     const asd = pos
-        // }
     }
+
 }

@@ -11,6 +11,8 @@ export const typeDefs = gql`
         #repititive
         postCreate(post: PostInput!): PostPayload!
         postUpdate(postId: ID!, post: PostInput!): PostPayload
+
+        signUp(email: String!, name: String!, password: String!): User
     }
     
 
