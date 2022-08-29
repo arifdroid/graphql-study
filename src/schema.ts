@@ -11,8 +11,16 @@ export const typeDefs = gql`
         #repititive
         postCreate(post: PostInput!): PostPayload!
         postUpdate(postId: ID!, post: PostInput!): PostPayload
-
+        postPublish(postId: ID!): PostPayload!
+        postUnpublish(postId: ID!): PostPayload!
         signUp(email: String!, name: String!, password: String!): AuthPayload
+        signup(
+            credentials: CredentialsInput!
+            name: String!
+            bio: String!
+            ): AuthPayload!
+        signin(credentials: CredentialsInput!): AuthPayload!
+
     }
     
 
@@ -61,6 +69,11 @@ export const typeDefs = gql`
         title: String,
         content: String
     }
+
+    input CredentialsInput {
+        email: String!
+        password: String!
+  }
 
 
 `
